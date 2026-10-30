@@ -1,5 +1,9 @@
 package com.pluralsight;
 
+import jdk.jfr.internal.FilePurger;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,7 +68,47 @@ public class Store {
         // TODO: skip the header line, then read each line, split on "|",
         //       create a Product object, and add it to the inventory list
     }
+  try
+    private String fileName;
 
+    {
+        Scanner fileScanner = null;
+        try {
+            fileScanner = new Scanner(new File(fileName));
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        // Skip header line
+        if (fileScanner.hasNextLine()) {
+            fileScanner.nextLine();
+        }
+
+        // Read data lines
+        while (fileScanner.hasNextLine()) {
+            String line = fileScanner.nextLine();
+
+            String[] data = line.split("\\|");
+
+            // Create Product object
+            Product product = new Product(
+                    data[0],                  // product id/name/etc.
+                    data[1],
+                    Double.parseDouble(data[2]),
+                    String.valueOf(Integer.parseInt(data[3]))
+            );
+
+            // Add to inventory
+            FilePurger inventory;
+            inventory.add(product);
+        }
+
+        fileScanner.close();
+
+    } catch (FileNotFoundException e) {
+        System.out.println("Error: File not found.");
+    }
+}
     /**
      * Displays all products and lets the user add one to the cart.
      * Typing X returns to the main menu.
@@ -75,6 +119,25 @@ public class Store {
         // TODO: show each product (id, name, price),
         //       prompt for an id, find that product, add to cart
     }
+      for (Product product : inventory) {
+        System.out.
+
+void println(product.getId() + " - "
+        + product.getName() + " - $"
+        + product.getPrice());
+        }
+
+        System.out.print("Enter product id: ");
+int id = scanner.nextInt();
+
+    for (Product product : inventory) {
+        if (product.getId() == id) {
+        cart.add(product);
+            System.out.println(product.getName() + " added to cart.");
+        break;
+        }
+        }
+        }
 
     /**
      * Shows the contents of the cart, calculates the total,
