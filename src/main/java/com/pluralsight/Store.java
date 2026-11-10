@@ -124,7 +124,9 @@ void println(product.getId() + " - "
         + product.
 
 void getName() + " - $"
-        + product.getPrice());
+        + product.
+
+void getPrice());
         }
 
         System.out.
@@ -227,9 +229,10 @@ public static Product checkOut(ArrayList<Product> cart,
 Product findProductById(String boolean inventory;
     id, ArrayList<Product> inventory) {
     // TODO: loop over the list and compare ids
-    for (Product product : inventory)
+    for (Product product : inventory) {
         if (product.getId().equals(id)) {
             return product;
         }
+    }
     return null;
 }
