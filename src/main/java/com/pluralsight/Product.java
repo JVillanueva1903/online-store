@@ -15,14 +15,6 @@ public class Product {
 
     }
 
-    public Product(String datum, String datum1, double v, String s) {
-
-    }
-
-    public Product(String datum, String datum1, double v, String s) {
-
-    }
-
     public Product(String av1051, String jblBluetoothSpeaker, double v, String audioVideo) {
 
     }
@@ -34,6 +26,7 @@ public class Product {
     public Product(String datum, String datum1, double v, String s) {
 
     }
+
 
     public String getSku() {
         return sku;
@@ -53,6 +46,14 @@ public class Product {
 
     public double getPrice() {
         return 0;
+    }
+
+    public Object getId() {
+        return null;
+    }
+
+    public Object getName() {
+        return null;
     }
 }
 import java.util.ArrayList;

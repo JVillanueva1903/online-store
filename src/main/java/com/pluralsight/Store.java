@@ -1,7 +1,5 @@
 package com.pluralsight;
 
-import jdk.jfr.internal.FilePurger;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import java.util.Scanner;
  * You will need extra imports (for example java.io.BufferedReader,
  * java.io.FileReader, java.io.IOException) as you fill the TODOs in.
  */
-public class Store {
+public class Store<FilePurger> {
 
     public static void main(String[] args) {
 
@@ -99,7 +97,7 @@ public class Store {
             );
 
             // Add to inventory
-            FilePurger inventory;
+            FilePurger inventory = null;
             inventory.add(product);
         }
 
@@ -123,17 +121,33 @@ public class Store {
         System.out.
 
 void println(product.getId() + " - "
-        + product.getName() + " - $"
+        + product.
+
+void getName() + " - $"
         + product.getPrice());
         }
 
-        System.out.print("Enter product id: ");
-int id = scanner.nextInt();
+        System.out.
+
+void print("Enter product id: ") {
+
+}
+
+static int id = scanner.nextInt();
 
     for (Product product : inventory) {
-        if (product.getId() == id) {
-        cart.add(product);
-            System.out.println(product.getName() + " added to cart.");
+        if (product.
+
+void getId() == id) {
+        cart.
+
+add(product) {
+
+}
+
+System.out.
+
+void println(product.getName() + " added to cart.");
         break;
         }
         }
@@ -143,35 +157,79 @@ int id = scanner.nextInt();
      * Shows the contents of the cart, calculates the total,
      * and offers the option to check out.
      */
+
     public static void displayCart(ArrayList<Product> cart, Scanner scanner) {
-        // TODO:
-        //   • list each product in the cart
-        //   • compute the total cost
-        //   • ask the user whether to check out (C) or return (X)
-        //   • if C, call checkOut(cart, totalAmount, scanner)
+    // TODO:
+    //   • list each product in the cart
+    //   • compute the total cost
+    //   • ask the user whether to check out (C) or return (X)
+    //   • if C, call checkOut(cart, totalAmount, scanner)
+
+    double totalAmount = 0.0;
+
+    System.out.println("\n=== Shopping Cart ===");
+
+    for (Product product : cart) {
+        System.out.printf("%d - %s - $%.2f%n",
+                product.getId(),
+                product.getName(),
+                product.getPrice());
+
+        totalAmount += product.getPrice();
     }
 
+    System.out.printf("%nTotal Cost: $%.2f%n", totalAmount);
+
+    System.out.print("Enter C to check out or X to return: ");
+    String choice = scanner.nextLine().trim().toUpperCase();
+
+    if (choice.equals("C")) {
+        checkOut(cart, totalAmount, scanner);
+    }
+}
     /**
      * Handles the checkout process:
      * 1. Confirm that the user wants to buy.
      * 2. Accept payment and calculate change.
      * 3. Display a simple receipt.
      * 4. Clear the cart.
+     *
+     * @return
      */
-    public static void checkOut(ArrayList<Product> cart,
-                                double totalAmount,
-                                Scanner scanner) {
-        // TODO: implement steps listed above
+public static Product checkOut(ArrayList<Product> cart,
+                               double totalAmount,
+                               Scanner scanner) {
+    // TODO: implement steps listed above
+
+    if (cart.isEmpty()) {
+        System.out.println("Your cart is empty.");
+        return;
     }
 
+    System.out.printf("Total Amount: $%.2f%n", totalAmount);
+
+    double payment;
+    do {
+        System.out.print("Enter payment amount: $");
+        payment = scanner.nextDouble();
+
+        if (payment < totalAmount) {
+            System.out.println("Insufficient payment. Please enter enough money.");
+        }
+    } while (payment < totalAmount);
+
+    double change = payment - totalAmount;
     /**
      * Searches a list for a product by its id.
      *
      * @return the matching Product, or null if not found
      */
-    public static Product findProductById(String id, ArrayList<Product> inventory) {
-        // TODO: loop over the list and compare ids
-        return null;
-    }
+Product findProductById(String boolean inventory;
+    id, ArrayList<Product> inventory) {
+    // TODO: loop over the list and compare ids
+    for (Product product : inventory)
+        if (product.getId().equals(id)) {
+            return product;
+        }
+    return null;
 }
-
